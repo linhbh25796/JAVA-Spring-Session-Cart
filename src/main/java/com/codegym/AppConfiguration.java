@@ -43,8 +43,18 @@ public class AppConfiguration extends WebMvcConfigurerAdapter implements Applica
 
     @Override
     public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
+        System.out.println(">>> init app config");
         this.applicationContext = applicationContext;
     }
+
+    @Override
+    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+        System.out.println(">>>> config resource");
+        registry.addResourceHandler("/anh/**")
+                .addResourceLocations("/img/");
+
+    }
+
     @Bean
     public ProductRepository productRepository(){
         return new ProductRepositoryImpl();
@@ -58,6 +68,7 @@ public class AppConfiguration extends WebMvcConfigurerAdapter implements Applica
     //Thymeleaf Configuration
     @Bean
     public SpringResourceTemplateResolver templateResolver(){
+        System.out.println(">>> config template resolver");
         SpringResourceTemplateResolver templateResolver = new SpringResourceTemplateResolver();
         templateResolver.setApplicationContext(applicationContext);
         templateResolver.setPrefix("/WEB-INF/views/");
@@ -101,9 +112,10 @@ public class AppConfiguration extends WebMvcConfigurerAdapter implements Applica
 
     @Bean
     public DataSource dataSource(){
+        System.out.println(">>> init data source");
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
-        dataSource.setUrl("jdbc:mysql://localhost:3306/cart");
+        dataSource.setUrl("jdbc:mysql://localhost:3306/cart?useSSL=false");
         dataSource.setUsername( "root" );
         dataSource.setPassword( "hoanglinh" );
         return dataSource;

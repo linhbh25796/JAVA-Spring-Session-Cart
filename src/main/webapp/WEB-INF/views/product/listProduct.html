@@ -7,18 +7,19 @@
 <style>
     .divEachProduct {
         width: 10%;
-        margin: auto;
+        margin: 0 auto;
         padding: 5px;
         border: red solid 2px;
     }
 
     .imageEachProduct {
-        margin: auto;
+        margin: 0 auto;
 
         border: black solid 2px;
     }
 
     .divMenu{
+        margin: 0 auto;
         float: bottom;
     }
     .divEachProduct{
@@ -27,7 +28,7 @@
 
 </style>
 <body>
-<img src="/static/images/sky.png"/>
+<!--<img src="anh/sky.png"/>-->
 <h1>Products</h1>
 <p>
     <a href="/home">Back Homepage</a>
@@ -36,11 +37,10 @@
 
     <div class="divEachProduct">
         <div class="imageEachProduct" >
-            <img th:src="@{'/images/' + ${product.image}}">
-
+            <img style="width: 100%" th:src="@{'/anh/' + ${product.image}}">
         </div>
         <div style="text-align: center;">
-            <p th:text="${product.product_name}"/>
+          <a th:href="@{https://www.google.com}"><p  th:text="${product.product_name}"/></a>
             <p th:text="${product.new_price}"/>
         </div>
     </div>

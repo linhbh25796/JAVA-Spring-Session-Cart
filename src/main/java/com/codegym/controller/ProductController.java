@@ -43,6 +43,7 @@ public class ProductController {
     //List product
     @GetMapping("/products")
     public ModelAndView listProducts() {
+        System.out.println(">>> call product api");
         Iterable<Product> products = productService.findAll();
         ModelAndView modelAndView = new ModelAndView("/product/listProduct");
         modelAndView.addObject("products",products);
